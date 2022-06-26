@@ -48,6 +48,7 @@ public class Bodega {
         Produto p = new Produto();
         try{
             p = estoque.buscar(codigo);
+            return p;
         } catch (PNEException e){
             System.out.println(e.getMessage());
         }

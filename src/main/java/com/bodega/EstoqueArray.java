@@ -6,20 +6,24 @@ public class EstoqueArray implements IEstoque{
 
     public void adicionar(Produto produto) throws PJCException {
         boolean exists = false;
+        for (Produto p: this.produtos_list){
+            if (produto == p) {
+                exists = true;
+                break;
+            }
+        }
 
-        try { exists = buscar(produto.getCodigo()) != null ? true : false; }
-        catch (PNEException e) { System.out.println(e.getMessage()); }
 
         if (exists == true) { throw new PJCException(); }
         else {
-            produtos_list[count] = produto;
+            this.produtos_list[count] = produto;
             count++;
         }
     }
 
     public Produto buscar(String codigo) throws PNEException {
         Produto aux = null;
-
+        System.out.println(this.count);
         for(Produto p : this.produtos_list){
             if (p.getCodigo() == codigo) {
                 aux = p;
